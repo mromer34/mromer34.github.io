@@ -31,42 +31,12 @@ var createScene = function () {
     // Default intensity is 1. Let's dim the light a small amount
     light.intensity = 0.7;
 
-    // Our built-in 'sphere' shape.
-    var sphere = BABYLON.MeshBuilder.CreateSphere("sphere", {diameter: 2, segments: 32}, scene);
-
-    // Move the sphere upward 1/2 its height
-    sphere.position.y = 1;
-
-    //create animation object to move sphere higher
-    var move_sphere = {obj: sphere, prop: 'position', val: new BABYLON.Vector3(2,3,0), dims:['x','y','z']};
-    
-    //create animation object to dim light
-    var dim_light = {obj: light, prop: 'intensity', val:2, dims:false};
-
-    //create animation camera rotate upward
-    var move_cam = {obj: camera, prop: 'rotation', val: new BABYLON.Vector3(0,0,0), dims:['x', 'y', 'z']}; 
-
-
-    //create array of animations
-    var animations = [];
-
-    //add sphere and light animations to array
-    animations.push(dim_light);
-    animations.push(move_sphere);
-    animations.push(move_cam);
-
-
-    //execute animations on canvas click
-    document.getElementById('renderCanvas').addEventListener('click', function(){
-        animate(animations, scene, 5);
-    });
-
-
-
-
+  var wheel = placeObject('./', 'wheel.obj',
+new BABYLON.Vector3(0, 0, 0), scene, 1,
+new BABYLON.Vector3(0, Math.PI, 0));
 
     // Our built-in 'ground' shape.
-    var ground = BABYLON.MeshBuilder.CreateGround("ground", {width: 6, height: 6}, scene);
+   // var ground = BABYLON.MeshBuilder.CreateGround("ground", {width: 6, height: 6}, scene);
 
     return scene;
 };
